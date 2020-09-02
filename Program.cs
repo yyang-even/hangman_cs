@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace hangman_cs {
@@ -84,6 +85,8 @@ class HangmanGame {
     }
 
     private bool updateDisplay(in char guess) {
+        Debug.Assert(selected_word.Length * 2 - 1 == display_word.Length);
+
         bool found = false;
         for (int i = 0; i < selected_word.Length; ++i) {
             if (guess == selected_word[i]) {
@@ -104,7 +107,9 @@ class HangmanGame {
 
         newGame();
         Console.WriteLine($"Word Length: {selected_word.Length}; Hint: {selected_cetegory}.");
+#if DEBUG
         Console.WriteLine($"Selected Word: {selected_word}.");
+#endif
 
         for (int retry = MAX_RETRY; retry > 0;) {
             Console.WriteLine("\nGuess a letter:");
