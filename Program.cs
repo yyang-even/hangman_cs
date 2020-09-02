@@ -111,6 +111,7 @@ class HangmanGame {
         Console.WriteLine($"Selected Word: {selected_word}.");
 #endif
 
+        bool win = false;
         for (int retry = MAX_RETRY; retry > 0;) {
             Console.WriteLine("\nGuess a letter:");
             var guess = validateInput(Console.ReadLine());
@@ -119,8 +120,8 @@ class HangmanGame {
 
                 if (updateDisplay(guess)) {
                     if (!display_word.Contains(MASK_CHAR)) {
-                        Console.WriteLine("You Win!!!");
-                        return;
+                        win = true;
+                        break;
                     }
                 }
             }
@@ -128,7 +129,13 @@ class HangmanGame {
             Console.WriteLine($"Letters history: {String.Join(' ', guessed_chars)}.");
             Console.WriteLine($"{new string(display_word)}");
         }
-        Console.WriteLine("You lose!");
+
+        Console.WriteLine($"Answer: {selected_word}.");
+        if (win) {
+            Console.WriteLine("You Win!!!");
+        } else {
+            Console.WriteLine("You lose!");
+        }
     }
 }
 
