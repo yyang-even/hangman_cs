@@ -34,7 +34,7 @@ public class UnitTest1 {
     [TestMethod]
     public void AfterSelectRandomWordSelectedMembersShouldNotBeEmpty() {
         var game = new HangmanGame();
-        CallVoidPrivateMethod(game, "selectRandomWord", null);
+        CallVoidPrivateMethod(game, "selectRandomWord");
 
         Assert.IsFalse(string.IsNullOrEmpty(game.SelectedWord));
         Assert.IsFalse(string.IsNullOrEmpty(game.SelectedCetegory));
@@ -71,7 +71,7 @@ public class UnitTest1 {
     [TestMethod]
     public void UpdateDisplayReturnTrueIfInSelectedWord() {
         var game = new HangmanGame();
-        CallVoidPrivateMethod(game, "newGame", null);
+        CallVoidPrivateMethod(game, "newGame");
 
         foreach (char c in game.SelectedWord) {
             AssertPrivateMethod(true, game, "updateDisplay", c);
@@ -81,7 +81,7 @@ public class UnitTest1 {
     [TestMethod]
     public void UpdateDisplayReturnFalseIfNotInSelectedWord() {
         var game = new HangmanGame();
-        CallVoidPrivateMethod(game, "newGame", null);
+        CallVoidPrivateMethod(game, "newGame");
 
         for (char c = 'a'; c <= 'z'; ++c) {
             if (!game.SelectedWord.Contains(c)) {
