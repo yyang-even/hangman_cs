@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace hangman_cs {
 
-class HangmanGame {
+public class HangmanGame {
     private static readonly IDictionary<string, string[]> WORDS_DICTIONARY =
     new Dictionary<string, string[]>() {
         {"a fruit", new[] {"apple", "apricot", "avocado", "banana", "blackberry", "blackcurrant", "blueberry", "boysenberry", "cherry", "coconut", "fig", "grape", "grapefruit", "kiwifruit", "lemon", "lime", "lychee", "mandarin", "mango", "melon", "nectarine", "orange", "papaya", "passion fruit", "peach", "pear", "pineapple", "plum", "pomegranate", "quince", "raspberry", "strawberry", "watermelon"}
@@ -16,7 +16,20 @@ class HangmanGame {
 
 
     private string selected_word;
+
+    public string SelectedWord {
+        get {
+            return selected_word;
+        }
+    }
+
     private string selected_cetegory;
+
+    public string SelectedCetegory {
+        get {
+            return selected_cetegory;
+        }
+    }
 
 
     private static readonly Random random = new Random();
@@ -27,7 +40,7 @@ class HangmanGame {
 
         guessed_chars.Clear();
 
-        var masked_word = new string(MASK_CHAR, selected_word.Length);
+        var masked_word = new string(MASK_CHAR, SelectedWord.Length);
         display_word = String.Join(' ', masked_word.ToCharArray()).ToCharArray();
     }
 
@@ -85,11 +98,11 @@ class HangmanGame {
     }
 
     private bool updateDisplay(in char guess) {
-        Debug.Assert(selected_word.Length * 2 - 1 == display_word.Length);
+        Debug.Assert(SelectedWord.Length * 2 - 1 == display_word.Length);
 
         bool found = false;
-        for (int i = 0; i < selected_word.Length; ++i) {
-            if (guess == selected_word[i]) {
+        for (int i = 0; i < SelectedWord.Length; ++i) {
+            if (guess == SelectedWord[i]) {
                 found = true;
                 display_word[i * 2] = guess;
             }
@@ -106,9 +119,9 @@ class HangmanGame {
         Console.WriteLine("Guess only one letter at a time. Please press 'Enter' key after each guess.");
 
         newGame();
-        Console.WriteLine($"Word Length: {selected_word.Length}; Hint: {selected_cetegory}.");
+        Console.WriteLine($"Word Length: {SelectedWord.Length}; Hint: {SelectedCetegory}.");
 #if DEBUG
-        Console.WriteLine($"Selected Word: {selected_word}.");
+        Console.WriteLine($"Selected Word: {SelectedWord}.");
 #endif
 
         bool win = false;
@@ -130,7 +143,7 @@ class HangmanGame {
             Console.WriteLine($"{new string(display_word)}");
         }
 
-        Console.WriteLine($"Answer: {selected_word}.");
+        Console.WriteLine($"Answer: {SelectedWord}.");
         if (win) {
             Console.WriteLine("You Win!!!");
         } else {
