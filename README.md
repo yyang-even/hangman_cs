@@ -1,2 +1,2 @@
-# hangman_cs
+# app
 A console Hangman game in C#.
