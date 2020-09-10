@@ -15,20 +15,13 @@ public class HangmanGame {
     };
 
 
-    private string selected_word;
-
     public string SelectedWord {
-        get {
-            return selected_word;
-        }
+        get;
+        private set;
     }
-
-    private string selected_cetegory;
-
     public string SelectedCetegory {
-        get {
-            return selected_cetegory;
-        }
+        get;
+        private set;
     }
 
 
@@ -63,8 +56,8 @@ public class HangmanGame {
             selected_word_index :
             (selected_word_index - word_length_prefix_sums[cetegory_index - 1]);
 
-        selected_word = WORDS_DICTIONARY.ElementAt(cetegory_index).Value[offset];
-        selected_cetegory = WORDS_DICTIONARY.ElementAt(cetegory_index).Key;
+        SelectedWord = WORDS_DICTIONARY.ElementAt(cetegory_index).Value[offset];
+        SelectedCetegory = WORDS_DICTIONARY.ElementAt(cetegory_index).Key;
     }
 
 
