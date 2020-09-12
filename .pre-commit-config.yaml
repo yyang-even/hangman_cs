@@ -1,9 +1,10 @@
 default_stages: [commit]
 repos:
-  - repo: https://github.com/yyang-even/yyLinuxScripts
-    rev: master
+  - repo: https://github.com/yyang-even/yyLinuxConfig
+    rev: e475e920fedb28f7bff2a58d1142a255fd3e86c4
     hooks:
       - id: astyle-cs
+
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v3.2.0
     hooks:
