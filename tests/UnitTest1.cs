@@ -47,7 +47,7 @@ public class UnitTest1 {
     [DataRow("ab")]
     [DataRow("8")]
     public void ValidateInputReturn0(in string input) {
-        AssertPrivateMethod('\0', new HangmanGame(), "validateInput", input);
+        AssertPrivateMethod(new Nullable<int>(), new HangmanGame(), "validateInput", input);
     }
 
     [DataTestMethod]
@@ -64,7 +64,7 @@ public class UnitTest1 {
         var game = new HangmanGame();
         AssertPrivateMethod(input.Last(), game, "validateInput", input);
 
-        AssertPrivateMethod('\0', game, "validateInput", input);
+        AssertPrivateMethod(new Nullable<int>(), game, "validateInput", input);
     }
 
 

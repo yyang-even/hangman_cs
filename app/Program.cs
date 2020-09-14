@@ -63,27 +63,27 @@ public class HangmanGame {
 
     private HashSet<char> guessed_chars = new HashSet<char>();
 
-    private char validateInput(in string input) {
+    private char? validateInput(in string input) {
         if (string.IsNullOrEmpty(input)) {
             Console.WriteLine("Empty input. Please enter a letter.");
-            return '\0';
+            return null;
         }
 
         if (input.Length > 1) {
             Console.WriteLine("More than one characters. Please enter one letter only.");
-            return '\0';
+            return null;
         }
 
         var input_lower_char = Char.ToLower(input.Last());
 
         if (input_lower_char < 'a' || input_lower_char > 'z') {
             Console.WriteLine("Input character is not a letter.");
-            return '\0';
+            return null;
         }
 
         if (guessed_chars.Contains(input_lower_char)) {
             Console.WriteLine("Guessed before. Please try another letter.");
-            return '\0';
+            return null;
         }
         guessed_chars.Add(input_lower_char);
 
@@ -121,10 +121,10 @@ public class HangmanGame {
         for (int retry = MAX_RETRY; retry > 0;) {
             Console.WriteLine("\nGuess a letter:");
             var guess = validateInput(Console.ReadLine());
-            if (guess != '\0') {
+            if (guess != null) {
                 --retry;
 
-                if (updateDisplay(guess)) {
+                if (updateDisplay(guess.Value)) {
                     if (!display_word.Contains(MASK_CHAR)) {
                         win = true;
                         break;
